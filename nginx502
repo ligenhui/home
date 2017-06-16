@@ -15,3 +15,6 @@ fastcgi_param PHP_ADMIN_VALUE "open_basedir=$document_root/:/tmp/:/proc/";
 *改为*fastcgi_param PHP_ADMIN_VALUE "open_basedir=/usr/local/nginx/html/tp5/:/tmp/:/proc/";
 
 重启下nginx就可以啦
+
+
+分享请带上传送门: https://github.com/ligenhui/home/blob/master/nginx502
