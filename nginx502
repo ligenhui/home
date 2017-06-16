@@ -1,0 +1,17 @@
+thinkphp5 linux环境下502问题
+
+网上找的lnmp集成包    项目部署完成后发现页面空白
+（更改php报错级别后发现错误原因：Warning: require(): open_basedir restriction in effect. File(/usr/local/nginx/html/thinkSwooleFirst/thinkphp/start.php) is not within the allowed path(s): (/usr/local/nginx/html/thinkSwooleFirst/public/:/tmp/:/proc/) in /usr/local/nginx/html/thinkSwooleFirst/public/index.php on line 19）
+
+关键问题：open_basedir restriction in effect：（open_basedir限制有效）
+
+后面找到nginx配置文件下的fastcgi.conf发现最后一行代码
+
+fastcgi_param PHP_ADMIN_VALUE "open_basedir=$document_root/:/tmp/:/proc/";
+自己网上查阅的大致意思是网站的目录权限，而thinkphp的根目录是在public上一层，所以要把路径改到上一级
+
+原路径：fastcgi_param PHP_ADMIN_VALUE "open_basedir=/usr/local/nginx/html/tp5/public/:/tmp/:/proc/";
+
+*改为*fastcgi_param PHP_ADMIN_VALUE "open_basedir=/usr/local/nginx/html/tp5/:/tmp/:/proc/";
+
+重启下nginx就可以啦
