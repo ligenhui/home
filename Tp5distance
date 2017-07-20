@@ -1,0 +1,4 @@
+//25是小于25公里
+//3959 英里，6371 公里
+//106.504289,29.574666//当前经纬度
+$data = Db::query("SELECT hName, ( 6371 * acos( cos( radians(106.504289) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(29.574666) ) + sin( radians(106.504289) ) * sin( radians( lat ) ) ) ) AS distance FROM yyx_hospital HAVING distance < 25 ORDER BY distance LIMIT 0 , 10");
